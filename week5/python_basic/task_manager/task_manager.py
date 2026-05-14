@@ -17,11 +17,11 @@ class Task:
 
 class Tasks:
     tasks: list[Task] = []
-    id = 1
+    id = 1  # Each task is given a unique id
 
     # pub
     def add_task(self):
-        name = get_name()
+        name = get_word()
         urgency_level = int(get_urgency_level())
         new_task = Task(self.id, name, urgency_level, False)
         self.id += 1
@@ -55,16 +55,16 @@ class Tasks:
 def get_number(msg: str):
     while True:
         num = input(f"{msg}: ")
-        if is_a_number(num):
+        if is_number(num):
             return num
         print("this was not a number try again")
 
 
-def is_a_number(num: str):
+def is_number(num: str):
     return num.isdigit()
 
 
-def get_name():
+def get_word():
     while True:
         name = input("Enter the task's name: ")
         if name:
@@ -112,6 +112,17 @@ def print_exit_msg(tasks: Tasks):
 
 
 # pub
+def show_menu():
+    print("=== Task manager ===")
+    print("1: add task")
+    print("2: show pending tasks")
+    print("3: show completed tasks")
+    print("4: change task status")
+    print("5: show urgent tasks")
+    print("6: exit")
+
+
+# pub
 def main():
     tasks = Tasks()
     choices = {
@@ -128,17 +139,6 @@ def main():
             print_exit_msg(tasks)
             return
         choices.get(choice, unknown_choice)()
-
-
-# pub
-def show_menu():
-    print("=== Task manager ===")
-    print("1: add task")
-    print("2: show pending tasks")
-    print("3: show completed tasks")
-    print("4: change task status")
-    print("5: show urgent tasks")
-    print("6: exit")
 
 
 if __name__ == "__main__":
