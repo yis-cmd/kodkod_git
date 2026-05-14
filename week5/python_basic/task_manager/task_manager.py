@@ -26,6 +26,9 @@ class Tasks:
         new_task = Task(self.id, name, urgency_level, False)
         self.id += 1
         self.tasks.append(new_task)
+        print(
+            f"added task {name}, urgency level {urgency_level}, task id: {new_task.id}"
+        )
 
     def get_most_urgent_tasks(self):
         return [task for task in self.tasks if task.urgency_level == 1]
@@ -84,16 +87,28 @@ def is_valid_urgency_level(urgency_level: int):
 # pub
 def print_tasks(get_tasks: Callable[[], list[Task]]):
     tasks = get_tasks()
+    print("=== Task list ===")
     for task in tasks:
         print(f"task number {task.id}")
         print(task)
         print()
     if not tasks:
-        print("No taks found")
+        print("No tasks found")
 
 
 def unknown_choice():
     print("unknown choice")
+
+
+def print_exit_msg(tasks: Tasks):
+    pending_tasks = len(tasks.get_pending_tasks())
+    completed_tasks = len(tasks.get_completed_tasks())
+    urgent_tasks = len(tasks.get_most_urgent_tasks())
+    print("=== Good bye ===")
+    print(f"There are {pending_tasks} pending tasks")
+    print(f"There are {urgent_tasks} urgent tasks")
+    print(f"There are {completed_tasks} completed tasks")
+    print()
 
 
 # pub
@@ -110,7 +125,7 @@ def main():
         show_menu()
         choice = int(get_number(""))
         if choice == 6:
-            print("good bye")
+            print_exit_msg(tasks)
             return
         choices.get(choice, unknown_choice)()
 
