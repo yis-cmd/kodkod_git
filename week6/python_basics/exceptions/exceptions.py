@@ -54,12 +54,12 @@ def withdraw(balance, amount):
 
 
 def retry(func, n):
-    for _ in range(n):
+    for time in range(n):
         try:
             return func()
         except Exception:
-            pass
-    raise
+            if time == n - 1:
+                raise
 
 
 def count_errors(funcs):
