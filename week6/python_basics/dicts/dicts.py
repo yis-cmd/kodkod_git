@@ -59,7 +59,7 @@ def frequency(string: str):
 
 
 def common(dict1: dict, dict2: dict):
-    return [key for key in dict1 if key in dict2]
+    return sorted([key for key in dict1 if key in dict2])
 
 
 def most_frequent(dictionary: dict):
