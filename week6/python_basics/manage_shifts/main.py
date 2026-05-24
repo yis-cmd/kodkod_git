@@ -17,5 +17,6 @@ def main() -> None:
     base_menu = BaseMenu(unit)
     base_menu.run()
 
+
 if __name__ == "__main__":
     main()

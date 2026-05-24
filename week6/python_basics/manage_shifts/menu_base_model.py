@@ -4,15 +4,13 @@ import exceptions
 import utils
 
 
-
-
-class MenuBaseModel(ABC): # ABC doesn't force anything just a declaration of intent
+class MenuBaseModel(ABC):  # ABC doesn't force anything just a declaration of intent
     def __init__(self, title) -> None:
-        self.title:str = title
-        self.options:dict[str, tuple[str, Callable]] = {}
-        self.add_option("/q", "Go back" ,self.go_back)
+        self.title: str = title
+        self.options: dict[str, tuple[str, Callable]] = {}
+        self.add_option("exit", "Go back", self.go_back)
 
-    def add_option(self, key:str, description:str, action:Callable):
+    def add_option(self, key: str, description: str, action: Callable):
         """
         add an option to the menu
 
@@ -21,14 +19,8 @@ class MenuBaseModel(ABC): # ABC doesn't force anything just a declaration of int
             description (str): description of the action
             action (Callable): the function to activate for the choice
         """
-        # if key in self.options:
-        #     if not utils.confirmation_menu(
-        #         f"The key already exists for {self.options[key][0]} are you sure you want to override it?"
-        #     ):
-        #         return
         self.options[key] = (description, action)
-                
-    
+
     def show_options(self) -> None:
         """
         format and show menu for the menu
@@ -37,10 +29,10 @@ class MenuBaseModel(ABC): # ABC doesn't force anything just a declaration of int
         """
         print(f"==== {self.title} ====")
         for key, (description, _) in self.options.items():
-            if key == "Default": # Default should be reserved for error handling
+            if key == "Default":  # Default should be reserved for error handling
                 continue
             print(f"{key}. {description}")
-        print("> ")
+        print("> ", end="")
 
     def go_back(self):
         raise exceptions.GoBack()
@@ -49,8 +41,10 @@ class MenuBaseModel(ABC): # ABC doesn't force anything just a declaration of int
         while True:
             try:
                 self.show_options()
-                #the user should not be allowed to trigger error handling like that
-                choice = utils.get_user_choice({k for k in self.options if k != "Default"})
+                # the user should not be allowed to trigger error handling like that
+                choice = utils.get_user_choice(
+                    {k for k in self.options if k != "Default"}
+                )
                 fallback = ("Invalid", lambda: print("Invalid key!, try again"))
                 self.options.get(choice, self.options.get("Default", fallback))[1]()
             except exceptions.GoBack:
