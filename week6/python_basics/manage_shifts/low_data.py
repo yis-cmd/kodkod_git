@@ -8,10 +8,11 @@ class DutyStatus(StrEnum):
     COMPLETED = "COMPLETED"
     MISSED = "MISSED"
 
+
 @dataclass
 class DutyDto:
-    name:str
-    day:str
+    name: str
+    day: str
 
 
 @dataclass
@@ -39,10 +40,10 @@ class Soldier:
             raise exceptions.DuplicatedDutiesForIDError
         self.duties[duty.name] = duty
 
-    def update_duty(self, duty_name: str, new_status: str):
+    def update_duty_status(self, duty_name: str, new_status: str):
         if duty_name not in self.duties:
             raise exceptions.DutyNotExistsForIDError
-        self.duties[duty_name].status = DutyStatus(new_status)
+        self.duties[duty_name].status = DutyStatus(new_status.upper())
 
     def has_duty(self, duty_name: str):
         return duty_name in self.duties

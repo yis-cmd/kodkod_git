@@ -55,12 +55,12 @@ class ManageDutiesMenu(MenuBaseModel):
 
     def add_duty_to_soldier(self):
         soldier_id = self.get_a_valid_ID()
-        while True:
+        print("Enter duty name")
+        duty_name = utils.get_user_input()
+        while not duty_name in self.unit.duty_types:
+            print("Duty does not exist!, try again")
             print("Enter duty name")
             duty_name = utils.get_user_input()
-            if duty_name in self.unit.duty_types:
-                break
-            print("Duty does not exist!, try again")
         duty_day = utils.get_valid_day()
         duty = DutyDto(duty_name, duty_day)
         try:
@@ -70,11 +70,12 @@ class ManageDutiesMenu(MenuBaseModel):
 
     def update_duty(self):
         soldier_id = self.get_a_valid_ID()
-        while True:
-            duty_name = utils.get_user_input()
-            if duty_name in self.unit.duty_types:
-                break
+        print("Enter duty name ")
+        duty_name = utils.get_user_input()
+        while not duty_name in self.unit.duty_types:
             print("Duty does not exist!, try again")
+            print("Enter duty name ")
+            duty_name = utils.get_user_input()
         status = utils.get_valid_status()
         try:
             self.unit.update_duty_status(soldier_id, duty_name, status)

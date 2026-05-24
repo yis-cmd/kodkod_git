@@ -29,8 +29,6 @@ class SoldiersMng(ABC):
         if not self.is_existing_id(soldier_id):
             raise exceptions.IDNotExistsError
         return self.soldiers.pop(soldier_id)
-    
-    
 
 
 class Unit(SoldiersMng):
@@ -75,7 +73,9 @@ class Unit(SoldiersMng):
     ) -> None:
         if not self.is_existing_id(soldier_id):
             raise exceptions.IDNotExistsError
-        self.soldiers[soldier_id].update_duty(duty_name, new_status)
+        if not duty_name in self.duty_types:
+            raise exceptions.DutyTypeNotExistsError
+        self.soldiers[soldier_id].update_duty_status(duty_name, new_status)
 
     def get_soldier_duties(self, soldier_id: int) -> list[Duty]:
         if not self.is_existing_id(soldier_id):
