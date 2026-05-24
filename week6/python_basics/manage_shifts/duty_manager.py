@@ -2,7 +2,7 @@ from menu_base_model import MenuBaseModel
 from data import Unit
 import utils
 from low_data import DutyDto
-import exceptions
+import custom_exceptions
 
 class ManageDutiesMenu(MenuBaseModel):
     def __init__(self, unit: Unit) -> None:
@@ -37,7 +37,7 @@ class ManageDutiesMenu(MenuBaseModel):
         response = utils.get_user_input()
         try:
             self.unit.add_duty_type(response)
-        except exceptions.DutyTypeAlreadyExistsError:
+        except custom_exceptions.DutyTypeAlreadyExistsError:
             print("Couldn't add duty type a duty with the same name already exists")
 
     def print_duties(self):

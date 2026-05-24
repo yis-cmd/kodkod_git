@@ -1,5 +1,6 @@
 import re
-import exceptions
+
+import custom_exceptions
 from low_data import DutyStatus
 
 
@@ -20,7 +21,7 @@ def get_user_input(msg: str | None = None) -> str:
     while user_input == "":
         user_input = input()
         if user_input == "exit":
-            raise exceptions.GoBack
+            raise custom_exceptions.GoBack
         print("Empty input!, try again")
     return user_input
 

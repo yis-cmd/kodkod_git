@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from enum import StrEnum
-import exceptions
+
+import custom_exceptions
 
 
 class DutyStatus(StrEnum):
@@ -37,12 +38,12 @@ class Soldier:
 
     def add_duty(self, duty: Duty):
         if duty.name in self.duties:
-            raise exceptions.DuplicatedDutiesForIDError
+            raise custom_exceptions.DuplicatedDutiesForIDError
         self.duties[duty.name] = duty
 
     def update_duty_status(self, duty_name: str, new_status: str):
         if duty_name not in self.duties:
-            raise exceptions.DutyNotExistsForIDError
+            raise custom_exceptions.DutyNotExistsForIDError
         self.duties[duty_name].status = DutyStatus(new_status.upper())
 
     def has_duty(self, duty_name: str):

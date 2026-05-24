@@ -1,6 +1,7 @@
-from collections.abc import Callable
 from abc import ABC
-import exceptions
+from collections.abc import Callable
+
+import custom_exceptions
 import utils
 
 
@@ -35,7 +36,7 @@ class MenuBaseModel(ABC):  # ABC doesn't force anything just a declaration of in
         print("> ", end="")
 
     def go_back(self):
-        raise exceptions.GoBack()
+        raise custom_exceptions.GoBack()
 
     def run(self):
         is_running = True
@@ -48,5 +49,5 @@ class MenuBaseModel(ABC):  # ABC doesn't force anything just a declaration of in
                 )
                 fallback = ("Invalid", lambda: print("Invalid key!, try again"))
                 self.options.get(choice, self.options.get("Default", fallback))[1]()
-            except exceptions.GoBack:
+            except custom_exceptions.GoBack:
                 is_running = False
