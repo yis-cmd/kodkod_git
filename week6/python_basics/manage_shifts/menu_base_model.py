@@ -38,7 +38,8 @@ class MenuBaseModel(ABC):  # ABC doesn't force anything just a declaration of in
         raise exceptions.GoBack()
 
     def run(self):
-        while True:
+        is_running = True
+        while is_running:
             try:
                 self.show_options()
                 # the user should not be allowed to trigger error handling like that
@@ -48,4 +49,4 @@ class MenuBaseModel(ABC):  # ABC doesn't force anything just a declaration of in
                 fallback = ("Invalid", lambda: print("Invalid key!, try again"))
                 self.options.get(choice, self.options.get("Default", fallback))[1]()
             except exceptions.GoBack:
-                break
+                is_running = False

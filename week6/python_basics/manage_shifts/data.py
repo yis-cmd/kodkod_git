@@ -58,7 +58,7 @@ class Unit(SoldiersMng):
             raise exceptions.DutyTypeNotExistsError
         if not utils.is_valid_day(duty_dto.day):
             raise exceptions.InvalidDayError
-        duty = Duty(duty_dto.name.upper(), duty_dto.day)
+        duty = Duty(duty_dto.name, duty_dto.day)
         self.soldiers[soldier_id].add_duty(duty)
 
     def soldier_has_duty(self, soldier_id: int, duty_name: str) -> bool:
