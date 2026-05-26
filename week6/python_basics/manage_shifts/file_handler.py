@@ -14,7 +14,7 @@ def read(name:str):
 def write(path:str, data):
     try:
         with open(path, "w") as file:
-            if path.endswith("jsonl"):
+            if path.endswith("json"):
                 json.dump(data, file)
             else:
                 file.write(data)
