@@ -1,9 +1,14 @@
 from abc import ABC
+from dataclasses import asdict
+from logging import FileHandler
 
 import custom_exceptions
 import utils
 from low_data import DutyDto, Soldier, Duty
 import file_handler
+
+SOLDIERS_DATA_FILE = "soldiers.json"
+
 
 
 class SoldiersMng(ABC):
@@ -25,11 +30,25 @@ class SoldiersMng(ABC):
             raise custom_exceptions.DuplicateIDError
         soldier = Soldier(soldier_id, name)
         self.soldiers[soldier.id] = soldier
+        self.export_soldier(soldier)
 
     def remove_soldier(self, soldier_id: int) -> Soldier:
         if not self.is_existing_id(soldier_id):
             raise custom_exceptions.IDNotExistsError
         return self.soldiers.pop(soldier_id)
+    
+    def export_soldier(self, soldier:Soldier):
+        soldiers = file_handler.read(SOLDIERS_DATA_FILE)
+        if not isinstance(soldiers, list):
+            raise
+        soldiers.append(asdict(soldier))
+        file_handler.write(SOLDIERS_DATA_FILE, soldiers)
+
+    # def import_soldiers(self):
+    #     soldiers = file_handler.read(SOLDIERS_DATA_FILE)
+    #     for soldier in soldiers:
+    
+    # def read_soldier(self, soldier:dict):
 
 
 class Unit(SoldiersMng):

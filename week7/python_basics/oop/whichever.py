@@ -24,5 +24,6 @@ class lst(Generic[T]):
 
 a: lst[str] = lst()
 a.append("a")
-a.append(1)
 print(a._list)
+
+

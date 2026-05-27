@@ -1,6 +1,3 @@
-from wtforms import SelectField
-
-
 class Student:
     def __init__(self, name) -> None:
         self._name = name

@@ -1,15 +1,15 @@
 import json
 
 
-def read(name:str):
+def read(name:str) -> list:
     try:
         with open(name, "r") as file:
             if name.endswith("json"):
-                return json.load(file)
+                return list(json.load(file))
             else:
-                return file.read()
-    except Exception as e:
-        print(f"Exception reading {e}")
+                return list(file.read())
+    except Exception:
+        raise
 
 def write(path:str, data):
     try:
@@ -19,11 +19,11 @@ def write(path:str, data):
             else:
                 file.write(data)
     except Exception as e:
-        print(f"Exception writing {e}")
+        raise
 
 def append(path:str, data):
     try:
         with open(path, "a") as file:
             file.write(data)
     except Exception as e:
-        print(f"Exception appending {e}")
+        raise

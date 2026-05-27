@@ -1,0 +1,32 @@
+{
+    "0": {
+        "shape_id": "0",
+        "shape_type": "circle",
+        "radius": 3
+    },
+    "1": {
+        "shape_id": "1",
+        "shape_type": "circle",
+        "radius": 2
+    },
+    "2": {
+        "shape_id": "2",
+        "shape_type": "circle",
+        "radius": 3
+    },
+    "3": {
+        "shape_id": "3",
+        "shape_type": "circle",
+        "radius": 2
+    },
+    "4": {
+        "shape_id": "4",
+        "shape_type": "circle",
+        "radius": 2
+    },
+    "5": {
+        "shape_id": "5",
+        "shape_type": "square",
+        "side": 2
+    }
+}
