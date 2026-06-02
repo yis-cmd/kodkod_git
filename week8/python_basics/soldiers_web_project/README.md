@@ -1,4 +1,5 @@
 the command to run to install the dependencies is uv sync
+or pip install -r requirements.txt
 
 # main.py
 

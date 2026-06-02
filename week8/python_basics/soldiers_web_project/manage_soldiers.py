@@ -1,4 +1,3 @@
-from typing import Optional
 from uuid import uuid4
 from enum import Enum
 
@@ -15,11 +14,11 @@ class Rank(Enum):
     e = 5
 
 class UpdateSoldier(BaseModel):
-    name: Optional[str] = None
-    unit: Optional[str] = None
-    rank: Optional[Rank] = None
-    role: Optional[str] = None
-    is_active: Optional[bool] = None
+    name: str | None = None
+    unit: str | None = None
+    rank: str | None = None
+    role: str | None = None
+    is_active: str | None = None
 
 class SoldierNoID(BaseModel):
     name: str
