@@ -1,0 +1,7 @@
+method, path, action, input, output, response code
+GET, /, root, None, usage instructions, 200
+GET, /soldiers, get all soldiers, requester clearance, all soldiers, 200 401 403
+GET, /soldier/{id}, get soldier by id, requester clearance + soldier id, requested soldier, 200 404 401 403 
+POST, /soldiers/add, add soldier, request clearance + soldier info, request status, 201 401 403 
+PUT, /soldiers/update/{id}, update soldier, request clearance + info to update, request status, 201 404 401 403
+DELETE, /soldiers/delete/{id}, delete soldier, request clearance + soldier id, request status, 204 404 401 403

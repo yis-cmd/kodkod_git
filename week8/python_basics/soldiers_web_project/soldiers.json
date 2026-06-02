@@ -1,0 +1,26 @@
+[
+  {
+    "id": "b7632269-c201-4ddc-920a-f9ea68b2e544",
+    "name": "rambo abashvily",
+    "unit": "whatever",
+    "rank": 4,
+    "role": "whatever",
+    "is_active": true
+  },
+  {
+    "id": "7781aebb-fc35-43ba-94f7-e4221ad74630",
+    "name": "jhon dow",
+    "unit": "whatever",
+    "rank": 2,
+    "role": "whatever",
+    "is_active": true
+  },
+  {
+    "id": "33ba6187-f2ce-4aea-b696-7cffe89fc157",
+    "name": "ron homer",
+    "unit": "whatever",
+    "rank": 2,
+    "role": "whatever",
+    "is_active": false
+  }
+]
