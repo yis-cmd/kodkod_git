@@ -1,6 +1,8 @@
 the command to run to install the dependencies is uv sync
 or pip install -r requirements.txt
 
+the design follows a rule that every action requires certain rank from the requester to be authorized for it
+
 # main.py
 
 the entire server api

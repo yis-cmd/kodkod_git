@@ -15,11 +15,7 @@ def create_logger(name, filename:str | None = None) -> logging.Logger:
         file_handler.setFormatter(formatter)
         file_handler.setLevel(logging.INFO)
         logger.addHandler(file_handler)
-    
-    critical_handler = logging.FileHandler("critical.log")
-    critical_handler.setFormatter(formatter)
-    critical_handler.setLevel(logging.CRITICAL)
-    logger.addHandler(critical_handler)
+
 
     return logger
 

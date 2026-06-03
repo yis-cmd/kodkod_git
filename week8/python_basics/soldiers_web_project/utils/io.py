@@ -1,11 +1,10 @@
 from json import dump, load
 import os
+from logger_config import create_logger
 
-__all__  = [
-    "create_file",
-    "read",
-    "write"
-]
+
+logger = create_logger(__name__, "system.log")
+
 
 def create_file(filename:str) -> None:
     """create a file
@@ -21,6 +20,7 @@ def create_file(filename:str) -> None:
             dump([], file)
 
     except Exception:
+        logger.exception("error while trying to create a file")
         raise FileNotFoundError("cannot create a file")
 
 def read(filename:str):
@@ -40,6 +40,7 @@ def read(filename:str):
         with open(filename, "r") as file:
             return load(file)
     except Exception:
+        logger.exception("error while trying to write to a file")
         raise IOError
 
 def write(filename:str, data):
@@ -55,14 +56,18 @@ def write(filename:str, data):
         with open(filename, "w") as file:
             dump(data, file, indent=2)
     except Exception:
+        logger.exception("error while trying to read from a file")
         raise IOError
     
 def read_instructions():
-    with open("endpoint_chart.csv", "r") as file:
-        titles = file.readline().strip().split(",")
-        instructions = []
-        for line in file:
-            current = {title:curr for title, curr in zip(titles, line.strip().split(","))}
-            instructions.append(current)
-        return instructions
-
+    try:
+        with open("endpoint_chart.csv", "r") as file:
+            titles = file.readline().strip().split(",")
+            instructions = []
+            for line in file:
+                current = {title:curr for title, curr in zip(titles, line.strip().split(","))}
+                instructions.append(current)
+            return instructions
+    except Exception:
+        logger.exception("error while trying to read from instructions file")
+        raise IOError

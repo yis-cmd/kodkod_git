@@ -22,5 +22,13 @@
     "rank": 2,
     "role": "whatever",
     "is_active": false
+  },
+  {
+    "id": "0eb2fd56-3813-4181-96ca-0012631082b6",
+    "name": "jhon dow 3",
+    "unit": "whatever",
+    "rank": 3,
+    "role": "whatever",
+    "is_active": false
   }
 ]
