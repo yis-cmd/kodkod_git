@@ -1,5 +1,4 @@
 from json import JSONDecodeError, load, dump
-import os
 from pathlib import Path
 
 def create_file(filename: str):
