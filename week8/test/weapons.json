@@ -327,26 +327,5 @@
         "model": "M203",
         "ammo_type": "grenade",
         "condition": "new"
-    },
-    {
-        "id": 65,
-        "type": "machine_gun",
-        "model": "M249",
-        "ammo_type": "5.56mm",
-        "condition": "good"
-    },
-    {
-        "id": 67,
-        "type": "launcher",
-        "model": "M203",
-        "ammo_type": "grenade",
-        "condition": "good"
-    },
-    {
-        "id": 70,
-        "type": "rifle",
-        "model": "Tavor",
-        "ammo_type": "5.56mm",
-        "condition": "damaged"
     }
 ]
