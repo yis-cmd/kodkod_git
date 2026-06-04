@@ -1,0 +1,352 @@
+[
+    {
+        "id": 2,
+        "type": "launcher",
+        "model": "LAW",
+        "ammo_type": "rocket",
+        "condition": "damaged"
+    },
+    {
+        "id": 5,
+        "type": "machine_gun",
+        "model": "Negev",
+        "ammo_type": "5.56mm",
+        "condition": "damaged"
+    },
+    {
+        "id": 6,
+        "type": "machine_gun",
+        "model": "MAG",
+        "ammo_type": "7.62mm",
+        "condition": "good"
+    },
+    {
+        "id": 7,
+        "type": "rifle",
+        "model": "Tavor",
+        "ammo_type": "5.56mm",
+        "condition": "damaged"
+    },
+    {
+        "id": 9,
+        "type": "rifle",
+        "model": "AK-47",
+        "ammo_type": "7.62mm",
+        "condition": "new"
+    },
+    {
+        "id": 10,
+        "type": "launcher",
+        "model": "M203",
+        "ammo_type": "grenade",
+        "condition": "good"
+    },
+    {
+        "id": 11,
+        "type": "launcher",
+        "model": "M203",
+        "ammo_type": "grenade",
+        "condition": "damaged"
+    },
+    {
+        "id": 13,
+        "type": "machine_gun",
+        "model": "MAG",
+        "ammo_type": "7.62mm",
+        "condition": "new"
+    },
+    {
+        "id": 14,
+        "type": "rifle",
+        "model": "AK-47",
+        "ammo_type": "7.62mm",
+        "condition": "damaged"
+    },
+    {
+        "id": 17,
+        "type": "missile",
+        "model": "Spike",
+        "ammo_type": "guided_missile",
+        "condition": "good"
+    },
+    {
+        "id": 18,
+        "type": "launcher",
+        "model": "LAW",
+        "ammo_type": "rocket",
+        "condition": "new"
+    },
+    {
+        "id": 19,
+        "type": "missile",
+        "model": "Tamuz",
+        "ammo_type": "guided_missile",
+        "condition": "good"
+    },
+    {
+        "id": 20,
+        "type": "machine_gun",
+        "model": "Negev",
+        "ammo_type": "5.56mm",
+        "condition": "damaged"
+    },
+    {
+        "id": 21,
+        "type": "machine_gun",
+        "model": "M249",
+        "ammo_type": "5.56mm",
+        "condition": "new"
+    },
+    {
+        "id": 22,
+        "type": "machine_gun",
+        "model": "Negev",
+        "ammo_type": "5.56mm",
+        "condition": "damaged"
+    },
+    {
+        "id": 23,
+        "type": "rifle",
+        "model": "AK-47",
+        "ammo_type": "7.62mm",
+        "condition": "damaged"
+    },
+    {
+        "id": 24,
+        "type": "rifle",
+        "model": "Tavor",
+        "ammo_type": "5.56mm",
+        "condition": "damaged"
+    },
+    {
+        "id": 25,
+        "type": "rifle",
+        "model": "Tavor",
+        "ammo_type": "5.56mm",
+        "condition": "damaged"
+    },
+    {
+        "id": 26,
+        "type": "missile",
+        "model": "Spike",
+        "ammo_type": "guided_missile",
+        "condition": "damaged"
+    },
+    {
+        "id": 27,
+        "type": "machine_gun",
+        "model": "M249",
+        "ammo_type": "5.56mm",
+        "condition": "damaged"
+    },
+    {
+        "id": 28,
+        "type": "machine_gun",
+        "model": "M249",
+        "ammo_type": "5.56mm",
+        "condition": "damaged"
+    },
+    {
+        "id": 31,
+        "type": "launcher",
+        "model": "LAW",
+        "ammo_type": "rocket",
+        "condition": "new"
+    },
+    {
+        "id": 32,
+        "type": "launcher",
+        "model": "LAW",
+        "ammo_type": "rocket",
+        "condition": "new"
+    },
+    {
+        "id": 33,
+        "type": "launcher",
+        "model": "M203",
+        "ammo_type": "grenade",
+        "condition": "good"
+    },
+    {
+        "id": 34,
+        "type": "launcher",
+        "model": "M203",
+        "ammo_type": "grenade",
+        "condition": "good"
+    },
+    {
+        "id": 36,
+        "type": "rifle",
+        "model": "M4",
+        "ammo_type": "5.56mm",
+        "condition": "new"
+    },
+    {
+        "id": 37,
+        "type": "rifle",
+        "model": "Tavor",
+        "ammo_type": "5.56mm",
+        "condition": "new"
+    },
+    {
+        "id": 38,
+        "type": "machine_gun",
+        "model": "Negev",
+        "ammo_type": "5.56mm",
+        "condition": "damaged"
+    },
+    {
+        "id": 39,
+        "type": "machine_gun",
+        "model": "MAG",
+        "ammo_type": "7.62mm",
+        "condition": "damaged"
+    },
+    {
+        "id": 42,
+        "type": "rifle",
+        "model": "M4",
+        "ammo_type": "5.56mm",
+        "condition": "new"
+    },
+    {
+        "id": 43,
+        "type": "missile",
+        "model": "Patriot",
+        "ammo_type": "air_defense_missile",
+        "condition": "good"
+    },
+    {
+        "id": 45,
+        "type": "launcher",
+        "model": "LAW",
+        "ammo_type": "rocket",
+        "condition": "damaged"
+    },
+    {
+        "id": 46,
+        "type": "machine_gun",
+        "model": "Negev",
+        "ammo_type": "5.56mm",
+        "condition": "good"
+    },
+    {
+        "id": 47,
+        "type": "missile",
+        "model": "Patriot",
+        "ammo_type": "air_defense_missile",
+        "condition": "damaged"
+    },
+    {
+        "id": 48,
+        "type": "machine_gun",
+        "model": "Negev",
+        "ammo_type": "5.56mm",
+        "condition": "good"
+    },
+    {
+        "id": 50,
+        "type": "launcher",
+        "model": "RPG",
+        "ammo_type": "rocket",
+        "condition": "good"
+    },
+    {
+        "id": 51,
+        "type": "rifle",
+        "model": "Tavor",
+        "ammo_type": "5.56mm",
+        "condition": "new"
+    },
+    {
+        "id": 52,
+        "type": "launcher",
+        "model": "RPG",
+        "ammo_type": "rocket",
+        "condition": "new"
+    },
+    {
+        "id": 53,
+        "type": "launcher",
+        "model": "LAW",
+        "ammo_type": "rocket",
+        "condition": "damaged"
+    },
+    {
+        "id": 55,
+        "type": "machine_gun",
+        "model": "M249",
+        "ammo_type": "5.56mm",
+        "condition": "new"
+    },
+    {
+        "id": 57,
+        "type": "rifle",
+        "model": "Tavor",
+        "ammo_type": "5.56mm",
+        "condition": "damaged"
+    },
+    {
+        "id": 59,
+        "type": "missile",
+        "model": "Patriot",
+        "ammo_type": "air_defense_missile",
+        "condition": "good"
+    },
+    {
+        "id": 60,
+        "type": "launcher",
+        "model": "LAW",
+        "ammo_type": "rocket",
+        "condition": "good"
+    },
+    {
+        "id": 61,
+        "type": "launcher",
+        "model": "LAW",
+        "ammo_type": "rocket",
+        "condition": "damaged"
+    },
+    {
+        "id": 62,
+        "type": "launcher",
+        "model": "M203",
+        "ammo_type": "grenade",
+        "condition": "new"
+    },
+    {
+        "id": 63,
+        "type": "machine_gun",
+        "model": "Negev",
+        "ammo_type": "5.56mm",
+        "condition": "damaged"
+    },
+    {
+        "id": 64,
+        "type": "launcher",
+        "model": "M203",
+        "ammo_type": "grenade",
+        "condition": "new"
+    },
+    {
+        "id": 65,
+        "type": "machine_gun",
+        "model": "M249",
+        "ammo_type": "5.56mm",
+        "condition": "good"
+    },
+    {
+        "id": 67,
+        "type": "launcher",
+        "model": "M203",
+        "ammo_type": "grenade",
+        "condition": "good"
+    },
+    {
+        "id": 70,
+        "type": "rifle",
+        "model": "Tavor",
+        "ammo_type": "5.56mm",
+        "condition": "damaged"
+    }
+]
