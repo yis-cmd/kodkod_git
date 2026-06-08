@@ -1,10 +1,12 @@
-from connection import get_cursor
 from database.base_models import Column, Columns
+from table_manager_base import DBManager
+from config import config
 
+db_manager = DBManager(config)
+college_mngr = db_manager.get_tables_manager("college")
 
 def run_queries(query: str):
-    with get_cursor() as cur:
-        cur.execute(query)
+    college_mngr._execute(stmt=query)
 
 
 def create_database():
@@ -50,7 +52,7 @@ def modify_email_column():
 
 
 def rename_courses_table():
-    query = "ALTER TABLE courses RENAME TO TrainingCourses;"
+    query = "ALTER TABLE courses RENAME TrainingCourses;"
     run_queries(query)
 
 

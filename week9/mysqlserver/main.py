@@ -1,15 +1,19 @@
 from fastapi import FastAPI, HTTPException
-from database import ddl_operations
 from database.base_models import Columns
 import database.hardcoded_tables
+from database.table_manager_base import DBManager
+from config import config
+from database import ddl_operations
 
 app = FastAPI()
+db_manager = DBManager(config)
+college_mngr = db_manager.get_tables_manager("college")
 
 @app.post("/tables/create")
 def create_tables():
     try:
         for table_name, columns in database.hardcoded_tables.tables.items():
-            ddl_operations.create_table(table_name, Columns.model_validate(columns))
+            college_mngr.create_table(table_name, Columns(all=columns))
         return {
                 "success": True,
                 "message": "All tables created successfully"
@@ -23,7 +27,7 @@ def create_tables():
 @app.post("/tables/create/{table_name}")
 def create_tables_dynamic(table_name:str, columns:Columns):
     try:
-        ddl_operations.create_table(table_name, columns)
+        college_mngr.create_table(table_name, columns)
         return {
                 "success": True,
                 "message": f"table {table_name} created successfully"
