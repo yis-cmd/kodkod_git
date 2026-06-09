@@ -8,7 +8,7 @@ class Constraint(BaseModel):
 
 class Column(BaseModel):
     name:str = Field(pattern=r"^[a-zA-Z0-9_]+$")
-    type:str = Field(pattern=r"^[a-zA-Z]+(\([0-9]+(,[0-9]+\))?)?$")
+    type:str = Field(pattern=r"^[a-zA-Z]+(\([0-9]+(,[0-9]+)?\))?$")
     constraints:list[Constraint] | None = None
 
     def format_as_sql(self):

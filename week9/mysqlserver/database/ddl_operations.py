@@ -1,5 +1,5 @@
 from database.base_models import Column
-from table_manager_base import DBManager
+from database.table_manager_base import DBManager
 from config import config
 
 db_manager = DBManager(config)
@@ -8,7 +8,6 @@ college_mngr = db_manager.get_tables_manager("college")
 
 def create_database():
     db_manager.create_db("college")
-    
 
 
 def drop_database():
