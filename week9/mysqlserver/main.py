@@ -1,11 +1,13 @@
 from fastapi import FastAPI
+
 from database.base_models import Column, Columns
 from database.table_manager_base import DBManager
+
 from config import config
-import hardcoded
+import hardcoded_setup
 
 app = FastAPI()
-app.include_router(hardcoded.router)
+app.include_router(hardcoded_setup.router)
 
 db_manager = DBManager(config)
 college_mngr = db_manager.get_tables_manager("college")

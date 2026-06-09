@@ -2,9 +2,10 @@ from fastapi import APIRouter, HTTPException
 
 import database.hardcoded_tables
 from database.base_models import Columns
-from database.table_manager_base import DBManager
-from config import config
 from database import ddl_operations
+from database.table_manager_base import DBManager
+
+from config import config
 
 router = APIRouter()
 db_manager = DBManager(config)

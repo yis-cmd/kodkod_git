@@ -37,6 +37,14 @@ class TableManager:
             cur.execute(f"USE `{self.database}`;")
             cur.execute(f"{stmt};", values)
 
+    def _fetch(self, stmt, values:Sequence | None = None):
+        if not values:
+            values = []
+        with self.db_conn as cur:
+            cur.execute(f"USE `{self.database}`;")
+            cur.execute(f"{stmt};", values)
+            return 
+
     def create_table(self, table_name:str, columns:Columns):
         stmt = f"""
                 CREATE TABLE IF NOT EXISTS `{table_name}`(
@@ -58,9 +66,13 @@ class TableManager:
         self._execute(stmt)
 
     def rename_column(self, table_name:str, old_name:str, new_name:str):
-        stmt = f"ALTER TABLE `{table_name}` ALTER COLUMN `{old_name}` TO `{new_name}`"
+        stmt = f"ALTER TABLE `{table_name}` RENAME COLUMN `{old_name}` TO `{new_name}`"
         self._execute(stmt)
     
     def modify_column(self, table_name:str, column:Column):
         stmt = f"ALTER TABLE `{table_name}` MODIFY {column.format_as_sql()}"
+        self._execute(stmt)
+
+    def drop_column(self, table_name:str, column_name:str):
+        stmt = f"ALTER TABLE `{table_name}` DROP COLUMN `{column_name}`"
         self._execute(stmt)

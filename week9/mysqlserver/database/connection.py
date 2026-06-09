@@ -1,4 +1,5 @@
 from typing import Sequence
+
 from mysql.connector.abstracts import MySQLCursorAbstract
 import mysql.connector
 
@@ -32,10 +33,12 @@ class DBConnection:
     def execute(self, stmt:str, values:Sequence | None = None):
         if not values:
             values = []
-        if self._connection and self._connection.is_connected():
-            self._cursor = self._connection.cursor()
-            assert self._cursor
-            self._cursor.execute(stmt, values)
+        if not self._connection or not self._connection.is_connected():
+            raise ConnectionError("No active database connection")
+        self._cursor = self._connection.cursor()
+        assert self._cursor
+        self._cursor.execute(stmt, values)
+        return self._cursor.fetchall()
 
     def __enter__(self):
         self.connect()
@@ -47,3 +50,4 @@ class DBConnection:
         else:
             self.commit()
         self.disconnect()
+        return False
