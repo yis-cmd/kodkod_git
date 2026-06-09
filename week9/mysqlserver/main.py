@@ -1,115 +1,41 @@
-from fastapi import FastAPI, HTTPException
-from database.base_models import Columns
-import database.hardcoded_tables
+from fastapi import FastAPI
+from database.base_models import Column, Columns
 from database.table_manager_base import DBManager
 from config import config
-from database import ddl_operations
+import hardcoded
 
 app = FastAPI()
+app.include_router(hardcoded.router)
+
 db_manager = DBManager(config)
 college_mngr = db_manager.get_tables_manager("college")
 
-@app.post("/tables/create")
-def create_tables():
-    try:
-        for table_name, columns in database.hardcoded_tables.tables.items():
-            college_mngr.create_table(table_name, Columns(all=columns))
-        return {
-                "success": True,
-                "message": "All tables created successfully"
-                }
-    except Exception as error:
-        raise HTTPException(500, {
-                    "success": False,
-                    "error": f"{error}"
-                    })
 
 @app.post("/tables/create/{table_name}")
-def create_tables_dynamic(table_name:str, columns:Columns):
-    try:
-        college_mngr.create_table(table_name, columns)
-        return {
-                "success": True,
-                "message": f"table {table_name} created successfully"
-                }
-    except Exception as error:
-        raise HTTPException(500, {
-                    "success": False,
-                    "error": f"{error}"
-                    })
+def create_tables(table_name: str, columns: Columns):
+    college_mngr.create_table(table_name, columns)
 
-@app.put("/students/add-phone-column")
-def patch_table():
-    try:
-        ddl_operations.add_phone_column()
-        return {
-                "success": True,
-                "message": "Phone column added successfully"
-                }
-    except Exception as error:
-        raise HTTPException(500, {
-                    "success": False,
-                    "error": f"{error}"
-                    })
 
-@app.delete("/tables")
-def drop_tables():
-    try:
-        ddl_operations.drop_all_tables()
-        return {
-                "success": True,
-                "message": "All tables deleted successfully"
-                }
-    except Exception as error:
-        raise HTTPException(500, {
-                    "success": False,
-                    "error": f"{error}"
-                    })
+@app.delete("/table/drop/{table_name}")
+def delete_table(table_name: str):
+    college_mngr.drop_table(table_name)
 
-@app.put("/students/add-birth-date")
-def add_bd_date():
-    try:
-        ddl_operations.add_birth_date_column()
-        return {
-            "success": True,
-            "message": "birth day date column added"
-        }
-    except Exception as error:
-        raise HTTPException(500, {
-                    "success": False,
-                    "error": f"{error}"
-                    })
 
-@app.put("/students/modify-email")
-def modify_email_column():
-    try:
-        ddl_operations.modify_email_column()
-        return {
-            "success": True,
-            "message": "birth day date column added"
-        }
-    except Exception as error:
-        raise HTTPException(500, {
-                    "success": False,
-                    "error": f"{error}"
-                    })
-    
-@app.put("/courses/rename")
-def rename_column():
-    try:
-        ddl_operations.rename_courses_table()
-        return {
-            "success": True,
-            "message": "birth day date column added"
-        }
-    except Exception as error:
-        raise HTTPException(500, {
-                    "success": False,
-                    "error": f"{error}"
-                    })
+@app.put("/tables/add_column/{table_name}")
+def add_column(table_name: str, column: Column):
+    college_mngr.add_column(table_name, column)
 
-def main():
-    pass
 
-if __name__ == "__main__":
-    main()
+@app.patch("/tables/modify_column/{table_name}")
+def modify_column(table_name: str, column: Column):
+    college_mngr.modify_column(table_name, column)
+
+
+@app.patch("/tables/rename_table/{table_name}")
+def table_rename(table_name: str, new_name: str):
+    college_mngr.rename_table(table_name, new_name)
+
+
+@app.patch("/tables/rename_column/{table_name}/{column_name}")
+def column_rename(table_name: str, column_name: str, new_name: str):
+    college_mngr.rename_column(table_name, column_name, new_name)
