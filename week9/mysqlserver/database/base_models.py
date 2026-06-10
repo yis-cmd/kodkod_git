@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 
 class Constraint(BaseModel):
-    type:str = Field(pattern=r"^(NOT NULL|UNIQUE|PRIMARY KEY|DEFAULT|AUTO_INCREMENT|NULL)( '[a-zA-Z0-9_]+')?$")
+    type:str = Field(pattern=r"^(NOT NULL|UNIQUE|PRIMARY KEY|DEFAULT|AUTO_INCREMENT|NULL)( '[a-zA-Z0-9_]+'| [A-Z_]+)?$")
 
     def format_as_sql(self) -> str:
         return self.type

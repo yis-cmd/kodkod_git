@@ -3,8 +3,11 @@ from typing import Any, Sequence
 from pydantic import BaseModel
 
 from config import Config
+from create_logger import create_logger
 from database.base_models import Column, Columns
 from database.connection import DBConnection
+
+logger = create_logger(__name__)
 
 
 def secure_identifiers(identifier: str) -> str:
@@ -136,10 +139,11 @@ class TableManager:
             filters_str, filter_values = format_filters(filters)
             stmt += " WHERE " + filters_str
             values += filter_values
+        logger.info(f"update running {stmt} value {values}")
         self._execute(stmt, values)
 
     def update_with_object(self, table_name:str, update:BaseModel, filters: dict[str, Any] | None = None):
-        updates_dict = update.model_dump(exclude_none=True)
+        updates_dict = update.model_dump()
         self.update(table_name, updates_dict, filters)
 
     def _build_select_filters(
@@ -209,3 +213,7 @@ class TableManager:
             
         # execute
         return self._execute(" ".join(stmt), values)
+
+    def get_max(self, table_name:str, column_name:str):
+        stmt = f"SELECT MAX({secure_identifiers(column_name)}) FROM {secure_identifiers(table_name)}"
+        return self._execute(stmt)

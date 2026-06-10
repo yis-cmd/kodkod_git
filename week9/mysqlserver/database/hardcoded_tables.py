@@ -55,7 +55,7 @@ tables = {
             }
         ),
     ],
-    "model": [
+    "items": [
         id_column,
         Column(
             name="name", type="VARCHAR(100)", constraints=[Constraint(type="NOT NULL")]
@@ -64,7 +64,7 @@ tables = {
         Column(name="price", type="FLOAT", constraints=[Constraint(type="NOT NULL")]),
         Column(name="category", type="VARCHAR(50)"),
         Column(
-            name="is_Active",
+            name="is_active",
             type="BOOLEAN",
             constraints=[Constraint(type="DEFAULT TRUE")],
         ),

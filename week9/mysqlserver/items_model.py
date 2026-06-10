@@ -17,9 +17,10 @@ class CreateItem(BaseModel):
     price:float = Field(ge=0.0)
     category:str = Field(max_length=50)
 
+
 class UpdateItem(BaseModel):
     name:str = Field(max_length=100)
     description:str | None = None
     price:float = Field(ge=0.0)
     category:str = Field(max_length=50)
-    is_active:bool = True
+    is_active:bool = Field(default=True)
