@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 
 from app_io import read, write
 from weapon_model import Weapon, WeaponNoID, UpdateWeapon
@@ -35,9 +35,9 @@ def export_weapons(weapons: list[Weapon]):
 
 
 @app.get("/weapons")
-def get_all_weapons():
+def get_all_weapons(data = Depends(load_weapons)):
     logger.info("sent list of weapons")
-    return read(FILENAME)
+    return data
 
 
 @app.get("/weapons/by-condition")

@@ -18,8 +18,6 @@ def load_db(db_name: str):
     return DatabaseState(soldiers)
 
 
-
-
 db_name = "soldiers.json"
 set_db(load_db(db_name))
 logger.info("db set")
