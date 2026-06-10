@@ -35,7 +35,7 @@ class DBConnection:
             values = []
         if not self._connection or not self._connection.is_connected():
             raise ConnectionError("No active database connection")
-        self._cursor = self._connection.cursor()
+        self._cursor = self._connection.cursor(dictionary=True)
         assert self._cursor
         self._cursor.execute(stmt, values)
         return self._cursor.fetchall()

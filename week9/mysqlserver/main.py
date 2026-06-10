@@ -5,9 +5,11 @@ from database.table_manager_base import DBManager
 
 from config import config
 import hardcoded_setup
+from routers.items_api import items_router
 
 app = FastAPI()
 app.include_router(hardcoded_setup.router)
+app.include_router(items_router, prefix="/items")
 
 db_manager = DBManager(config)
 college_mngr = db_manager.get_tables_manager("college")

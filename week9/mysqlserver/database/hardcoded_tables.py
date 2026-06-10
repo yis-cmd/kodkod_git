@@ -55,4 +55,23 @@ tables = {
             }
         ),
     ],
+    "model": [
+        id_column,
+        Column(
+            name="name", type="VARCHAR(100)", constraints=[Constraint(type="NOT NULL")]
+        ),
+        Column(name="description", type="TEXT", constraints=[Constraint(type="NULL")]),
+        Column(name="price", type="FLOAT", constraints=[Constraint(type="NOT NULL")]),
+        Column(name="category", type="VARCHAR(50)"),
+        Column(
+            name="is_Active",
+            type="BOOLEAN",
+            constraints=[Constraint(type="DEFAULT TRUE")],
+        ),
+        Column(
+            name="created_at",
+            type="DATETIME",
+            constraints=[Constraint(type="DEFAULT CURRENT_TIMESTAMP")],
+        )
+    ],
 }

@@ -1,5 +1,7 @@
 from typing import Any, Sequence
 
+from pydantic import BaseModel
+
 from config import Config
 from database.base_models import Column, Columns
 from database.connection import DBConnection
@@ -109,10 +111,15 @@ class TableManager:
         if len(column_names) != len(values):
             raise ValueError("Columns and values mismatch")
         place_holders = ",".join("%s" for _ in range(len(column_names)))
-        stmt = f"INSERT INTO {secure_identifiers(table_name)} ({" ".join(secure_identifiers(i) for i in column_names)}) VALUES ({place_holders})"
+        stmt = f"INSERT INTO {secure_identifiers(table_name)} ({", ".join(secure_identifiers(i) for i in column_names)}) VALUES ({place_holders})"
         self._execute(stmt, values)
 
-    def delete(self, table_name: str, filters: dict[str, str] | None = None):
+    def insert_objects(self, table_name: str, obj: BaseModel):
+        column_names = list(obj.model_dump().keys())
+        values = list(obj.model_dump().values())
+        self.insert(table_name, column_names, values)
+
+    def delete(self, table_name: str, filters: dict[str, Any] | None = None):
         stmt = f"DELETE FROM {secure_identifiers(table_name)}"
         values = []
         if filters:
@@ -121,7 +128,7 @@ class TableManager:
         self._execute(stmt, values)
 
     def update(
-        self, table_name, update: dict[str, str], filters: dict[str, str] | None = None
+        self, table_name, update: dict[str, str], filters: dict[str, Any] | None = None
     ):
         updates_str, values = format_updates(update)
         stmt = f"UPDATE {secure_identifiers(table_name)} SET {updates_str}"
@@ -131,11 +138,17 @@ class TableManager:
             values += filter_values
         self._execute(stmt, values)
 
-    def _build_filters(
+    def update_with_object(self, table_name:str, update:BaseModel, filters: dict[str, Any] | None = None):
+        updates_dict = update.model_dump(exclude_none=True)
+        self.update(table_name, updates_dict, filters)
+
+    def _build_select_filters(
         self,
         filters: dict[str, Any] | None = None,
         like_filters: dict[str, str] | None = None,
     ) -> tuple[str, list[Any]]:
+        if not filters and not like_filters:
+            return "", []
         where_clauses = []
         values = []
         if filters:
@@ -152,14 +165,24 @@ class TableManager:
         self,
         *,
         table_name: str,
-        column_names: list[str],
+        column_names: list[str] | str = "*",
         distinct: bool = False,
         ordered_by: list[str] | None = None,
         grouped_by: str | None = None,
         filters: dict[str, Any] | None = None,
         like_filters: dict[str, str] | None = None,
+        limit:int | None = None
     ):
-        secured_columns = ", ".join(secure_identifiers(c) for c in column_names)
+        if column_names == "*":
+            secured_columns = column_names
+        elif isinstance(column_names, str):
+            secured_columns = secure_identifiers(column_names)
+        else:
+            secured_columns = (
+                ", ".join(secure_identifiers(c) for c in column_names)
+                if isinstance(column_names, list)
+                else secure_identifiers(column_names)
+            )
 
         # base statement
         stmt: list[str] = []
@@ -169,10 +192,9 @@ class TableManager:
         )
 
         # where clauses
-        if filters or like_filters:
-            where_clauses, filter_values = self._build_filters(filters, like_filters)
-            stmt.append(where_clauses)
-            values += filter_values
+        where_clauses, filter_values = self._build_select_filters(filters, like_filters)
+        stmt.append(where_clauses)
+        values += filter_values
 
         # group by and order by clauses
         if grouped_by:
@@ -182,5 +204,8 @@ class TableManager:
                 f"ORDER BY {", ".join(secure_identifiers(o) for o in ordered_by)}"
             )
 
+        if limit:
+            stmt.append(f"LIMIT {limit}")
+            
         # execute
-        self._execute(" ".join(stmt), values)
+        return self._execute(" ".join(stmt), values)
